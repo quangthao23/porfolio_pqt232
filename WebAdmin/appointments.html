@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+	<link rel="stylesheet" href="css/style.css">
+	<title>Lịch Hẹn - Quản Lý Phòng Khám</title>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<section id="sidebar">
+	<a href="#" class="brand">
+		<i class='bx bxs-clinic'></i>
+		<span class="text">PETCARE</span>
+	</a>
+	<ul class="side-menu top">
+		<li><a href="index.html"><i class='bx bxs-dashboard'></i><span class="text">Dashboard</span></a></li>
+		<li><a href="services.html"><i class='bx bxs-briefcase-alt-2'></i><span class="text">Dịch Vụ</span></a></li>
+		<li><a href="doctors.html"><i class='bx bxs-user-voice'></i><span class="text">Bác Sĩ</span></a></li>
+		<li class="active"><a href="appointments.html"><i class='bx bxs-calendar'></i><span class="text">Lịch Hẹn</span></a></li>
+		<li><a href="customers.html"><i class='bx bxs-group'></i><span class="text">Khách Hàng</span></a></li>
+		<li><a href="blogs.html"><i class='bx bxs-book-content'></i><span class="text">Blogs</span></a></li>
+		<li><a href="schedule.html"><i class='bx bxs-time-five'></i><span class="text">Lịch Làm Việc</span></a></li>
+		<li><a href="AccountManagement.html"><i class='bx bxs-user-account'></i><span class="text">Quản Lý Tài Khoản</span></a></li>
+	</ul>
+</section>
+
+<!-- CONTENT -->
+<section id="content">
+	<!-- NAVBAR -->
+	<nav>
+		<i class='bx bx-menu'></i>
+		<a class="nav-link">Quản Lý Lịch Hẹn</a>
+		<form action="#">
+			<div class="form-input">
+				<input type="search" placeholder="Tìm kiếm lịch hẹn...">
+				<button type="submit" class="search-btn"><i class='bx bx-search'></i></button>
+			</div>
+		</form>
+		<input type="checkbox" id="switch-mode" hidden>
+		<!-- <a href="#" class="notification">
+			<i class='bx bxs-bell'></i>
+			<span class="num">5</span>
+		</a> -->
+		<a href="#" class="profile">
+			<img src="img/bs1.jpg" alt="Admin">
+		</a>
+	</nav>
+
+	<!-- MAIN -->
+	<main>
+		<!-- HEADER -->
+		<div class="head-title">
+			<div class="left">
+				<h1>Quản Lý Lịch Hẹn</h1>
+				<ul class="breadcrumb">
+					<li><a href="index.html">Bảng Điều Khiển</a></li>
+					<li><i class='bx bx-chevron-right'></i></li>
+					<li><a class="active" href="#">Lịch Hẹn</a></li>
+				</ul>
+			</div>
+			<button class="btn-add" id="openAddModal">
+				<i class='bx bx-plus'></i> Thêm Lịch Hẹn
+			</button>
+		</div>
+
+		<!-- STATISTICS CARDS -->
+		<ul class="box-info">
+			<li>
+				<i class='bx bxs-calendar-check'></i>
+				<span class="text">
+					<h3 id="totalAppointments">1,248</h3>
+					<p>Tổng Lịch Hẹn</p>
+				</span>
+			</li>
+
+			<li>
+				<i class='bx bxs-calendar'></i>
+				<span class="text">
+					<h3 id="todayAppointments">12</h3>
+					<p>Lịch Hẹn Hôm Nay</p>
+				</span>
+			</li>
+
+			<li>
+				<i class='bx bxs-time-five'></i>
+				<span class="text">
+					<h3 id="pendingAppointments">87</h3>
+					<p>Đang Chờ Xác Nhận</p>
+				</span>
+			</li>
+
+			<li>
+				<i class='bx bxs-check-circle'></i>
+				<span class="text">
+					<h3 id="completedAppointments">1,105</h3>
+					<p>Đã Hoàn Thành</p>
+				</span>
+			</li>
+		</ul>
+
+		<!-- FILTER SECTION -->
+		<div class="filter-section">
+			<div class="filter-group">
+				<label>Trạng thái:</label>
+				<select id="filterStatus" class="filter-select">
+					<option value="all">Tất cả</option>
+					<option value="confirmed">Đã xác nhận</option>
+					<option value="pending">Chờ xác nhận</option>
+					<option value="completed">Hoàn thành</option>
+					<option value="cancelled">Đã hủy</option>
+				</select>
+			</div>
+
+			<div class="filter-group">
+				<label>Ngày:</label>
+				<select id="filterDate" class="filter-select">
+					<option value="all">Tất cả</option>
+					<option value="today">Hôm nay</option>
+					<option value="week">Tuần này</option>
+					<option value="month">Tháng này</option>
+				</select>
+			</div>
+
+			<div class="filter-group">
+				<label>Bác sĩ:</label>
+				<select id="filterDoctor" class="filter-select">
+					<option value="all">Tất cả</option>
+					<option value="doctor1">BS. Nguyễn Văn A</option>
+					<option value="doctor2">BS. Trần Thị B</option>
+					<option value="doctor3">BS. Lê Văn C</option>
+				</select>
+			</div>
+		</div>
+
+		<!-- TABLE DATA -->
+		<div class="table-data">
+			<div class="order">
+				<div class="head">
+					<h3>Danh Sách Lịch Hẹn</h3>
+					<div class="head-actions">
+						<i class='bx bx-search'></i>
+						<i class='bx bx-filter'></i>
+					</div>
+				</div>
+				<table>
+					<thead>
+						<tr>
+							<th>Khách Hàng</th>
+							<th>Thú Cưng</th>
+							<th>Bác Sĩ</th>
+							<th>Dịch Vụ</th>
+							<th>Ngày</th>
+							<th>Giờ</th>
+							<th>Trạng Thái</th>
+							<th>Hành Động</th>
+						</tr>
+					</thead>
+					<tbody id="appointmentsTable">
+						<tr>
+							<td>
+								<p>Nguyễn Văn A</p>
+							</td>
+							<td>Milo</td>
+							<td>BS. Trần Thị B</td>
+							<td>Khám Tổng Quát</td>
+							<td>23-11-2025</td>
+							<td>09:00</td>
+							<td><span class="status completed">Đã Xác Nhận</span></td>
+							<td>
+								<button class="view-btn" title="Chi tiết"><i class='bx bx-show'></i></button>
+								<button class="edit-btn" title="Chỉnh sửa"><i class='bx bx-edit'></i></button>
+								<button class="delete-btn" title="Xóa"><i class='bx bx-trash'></i></button>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<p>Lê Thị C</p>
+							</td>
+							<td>Luna</td>
+							<td>BS. Phạm Văn D</td>
+							<td>Tiêm Phòng</td>
+							<td>23-11-2025</td>
+							<td>10:30</td>
+							<td><span class="status pending">Chờ Xác Nhận</span></td>
+							<td>
+								<button class="view-btn" title="Chi tiết"><i class='bx bx-show'></i></button>
+								<button class="edit-btn" title="Chỉnh sửa"><i class='bx bx-edit'></i></button>
+								<button class="delete-btn" title="Xóa"><i class='bx bx-trash'></i></button>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<p>Hoàng Văn E</p>
+							</td>
+							<td>Max</td>
+							<td>BS. Trần Thị B</td>
+							<td>Phẫu Thuật</td>
+							<td>23-11-2025</td>
+							<td>14:00</td>
+							<td><span class="status process">Đang Xử Lý</span></td>
+							<td>
+								<button class="view-btn" title="Chi tiết"><i class='bx bx-show'></i></button>
+								<button class="edit-btn" title="Chỉnh sửa"><i class='bx bx-edit'></i></button>
+								<button class="delete-btn" title="Xóa"><i class='bx bx-trash'></i></button>
+							</td>
+						</tr>
+						<tr>
+							<td>
+							<p>Đặng Thị F</p>
+							</td>
+							<td>Kai</td>
+							<td>BS. Lê Văn G</td>
+							<td>Khám Tổng Quát</td>
+							<td>22-11-2025</td>
+							<td>15:30</td>
+							<td><span class="status completed">Hoàn Thành</span></td>
+							<td>
+								<button class="view-btn" title="Chi tiết"><i class='bx bx-show'></i></button>
+								<button class="edit-btn" title="Chỉnh sửa"><i class='bx bx-edit'></i></button>
+								<button class="delete-btn" title="Xóa"><i class='bx bx-trash'></i></button>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<p>Phan Văn H</p>
+							</td>
+							<td>Bella</td>
+							<td>BS. Nguyễn Thị I</td>
+							<td>Cắt Tỉa Lông</td>
+							<td>22-11-2025</td>
+							<td>16:00</td>
+							<td><span class="status cancelled">Đã Hủy</span></td>
+							<td>
+								<button class="view-btn" title="Chi tiết"><i class='bx bx-show'></i></button>
+								<button class="edit-btn" title="Chỉnh sửa"><i class='bx bx-edit'></i></button>
+								<button class="delete-btn" title="Xóa"><i class='bx bx-trash'></i></button>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+		<!-- UPCOMING APPOINTMENTS -->
+		<div class="upcoming-section">
+			<div class="section-header">
+				<h3>Lịch Hẹn Sắp Tới</h3>
+				<a href="#" class="view-all">Xem tất cả →</a>
+			</div>
+			<div class="upcoming-grid">
+				<div class="upcoming-card">
+					<div class="time-badge">
+						<i class='bx bx-time'></i>
+						<span>09:00</span>
+					</div>
+					<div class="appointment-info">
+						<h4>Khám Tổng Quát</h4>
+						<p><i class='bx bx-user'></i> Nguyễn Văn A - Milo</p>
+						<p><i class='bx bx-user-voice'></i> BS. Trần Thị B</p>
+					</div>
+					<span class="status completed">Đã xác nhận</span>
+				</div>
+
+				<div class="upcoming-card">
+					<div class="time-badge">
+						<i class='bx bx-time'></i>
+						<span>10:30</span>
+					</div>
+					<div class="appointment-info">
+						<h4>Tiêm Phòng</h4>
+						<p><i class='bx bx-user'></i> Lê Thị C - Luna</p>
+						<p><i class='bx bx-user-voice'></i> BS. Phạm Văn D</p>
+					</div>
+					<span class="status pending">Chờ xác nhận</span>
+				</div>
+
+				<div class="upcoming-card">
+					<div class="time-badge">
+						<i class='bx bx-time'></i>
+						<span>14:00</span>
+					</div>
+					<div class="appointment-info">
+						<h4>Phẫu Thuật</h4>
+						<p><i class='bx bx-user'></i> Hoàng Văn E - Max</p>
+						<p><i class='bx bx-user-voice'></i> BS. Trần Thị B</p>
+					</div>
+					<span class="status process">Đang xử lý</span>
+				</div>
+			</div>
+		</div>
+	</main>
+</section>
+
+<!-- MODAL ADD/EDIT APPOINTMENT -->
+<div id="addModal" class="modal hidden">
+	<div class="modal-content modal-large">
+		<div class="modal-header">
+			<h2 id="modalTitle">Thêm Lịch Hẹn Mới</h2>
+			<button class="close-modal" id="closeAddModal">
+				<i class='bx bx-x'></i>
+			</button>
+		</div>
+
+		<input type="hidden" id="editIndex">
+
+		<div class="form-row">
+			<div class="form-group">
+				<label>Khách hàng: <span class="required">*</span></label>
+				<select id="customerId" required>
+					<option value="">Chọn khách hàng</option>
+					<option value="1">Nguyễn Văn A</option>
+					<option value="2">Lê Thị C</option>
+					<option value="3">Hoàng Văn E</option>
+				</select>
+			</div>
+
+			<div class="form-group">
+				<label>Thú cưng: <span class="required">*</span></label>
+				<input type="text" id="petName" placeholder="Tên thú cưng" required>
+			</div>
+		</div>
+
+		<div class="form-row">
+			<div class="form-group">
+				<label>Bác sĩ: <span class="required">*</span></label>
+				<select id="doctorId" required>
+					<option value="">Chọn bác sĩ</option>
+					<option value="1">BS. Nguyễn Văn A</option>
+					<option value="2">BS. Trần Thị B</option>
+					<option value="3">BS. Lê Văn C</option>
+				</select>
+			</div>
+
+			<div class="form-group">
+				<label>Dịch vụ: <span class="required">*</span></label>
+				<select id="serviceId" required>
+					<option value="">Chọn dịch vụ</option>
+					<option value="1">Khám Tổng Quát</option>
+					<option value="2">Tiêm Phòng</option>
+					<option value="3">Phẫu Thuật</option>
+				</select>
+			</div>
+		</div>
+
+		<div class="form-row">
+			<div class="form-group">
+				<label>Ngày hẹn: <span class="required">*</span></label>
+				<input type="date" id="appointmentDate" required>
+			</div>
+
+			<div class="form-group">
+				<label>Giờ hẹn: <span class="required">*</span></label>
+				<input type="time" id="appointmentTime" required>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label>Ghi chú:</label>
+			<textarea id="appointmentNote" placeholder="Ghi chú thêm về lịch hẹn" rows="3"></textarea>
+		</div>
+
+		<div class="form-group">
+			<label>Trạng thái:</label>
+			<select id="appointmentStatus">
+				<option value="pending">Chờ xác nhận</option>
+				<option value="confirmed">Đã xác nhận</option>
+				<option value="process">Đang xử lý</option>
+				<option value="completed">Hoàn thành</option>
+				<option value="cancelled">Đã hủy</option>
+			</select>
+		</div>
+
+		<div class="modal-actions">
+			<button class="btn-save" id="saveAppointment">
+				<i class='bx bx-check'></i> Lưu
+			</button>
+			<button class="btn-cancel" id="cancelModal">
+				<i class='bx bx-x'></i> Hủy
+			</button>
+		</div>
+	</div>
+</div>
+
+<!-- MODAL VIEW DETAILS -->
+<div id="viewModal" class="modal hidden">
+	<div class="modal-content">
+		<div class="modal-header">
+			<h2>Chi Tiết Lịch Hẹn</h2>
+			<button class="close-modal" id="closeViewModal">
+				<i class='bx bx-x'></i>
+			</button>
+		</div>
+
+		<div class="detail-group">
+			<label>Khách hàng:</label>
+			<p id="viewCustomer">Nguyễn Văn A</p>
+		</div>
+
+		<div class="detail-group">
+			<label>Thú cưng:</label>
+			<p id="viewPet">Milo</p>
+		</div>
+
+		<div class="detail-group">
+			<label>Bác sĩ:</label>
+			<p id="viewDoctor">BS. Trần Thị B</p>
+		</div>
+
+		<div class="detail-group">
+			<label>Dịch vụ:</label>
+			<p id="viewService">Khám Tổng Quát</p>
+		</div>
+
+		<div class="detail-group">
+			<label>Ngày giờ:</label>
+			<p id="viewDateTime">23-11-2025 09:00</p>
+		</div>
+
+		<div class="detail-group">
+			<label>Trạng thái:</label>
+			<p id="viewStatus"><span class="status completed">Đã xác nhận</span></p>
+		</div>
+
+		<div class="detail-group">
+			<label>Ghi chú:</label>
+			<p id="viewNote">Không có ghi chú</p>
+		</div>
+
+		<div class="modal-actions">
+			<button class="btn-cancel" id="closeViewBtn">
+				<i class='bx bx-x'></i> Đóng
+			</button>
+		</div>
+	</div>
+</div>
+
+<script src="js/script.js"></script>
+<script>
+// Toggle Sidebar
+const menuBar = document.querySelector('#content nav .bx.bx-menu');
+const sidebar = document.getElementById('sidebar');
+
+menuBar.addEventListener('click', function () {
+	sidebar.classList.toggle('hide');
+});
+
+// Dark Mode
+const switchMode = document.getElementById('switch-mode');
+if (switchMode) {
+	switchMode.addEventListener('change', function () {
+		document.body.classList.toggle('dark');
+	});
+}
+
+// Modal Management
+const addModal = document.getElementById('addModal');
+const viewModal = document.getElementById('viewModal');
+const openAddModalBtn = document.getElementById('openAddModal');
+const closeAddModalBtn = document.getElementById('closeAddModal');
+const closeViewModalBtn = document.getElementById('closeViewModal');
+const cancelModalBtn = document.getElementById('cancelModal');
+const closeViewBtn = document.getElementById('closeViewBtn');
+
+openAddModalBtn.addEventListener('click', function() {
+	addModal.classList.remove('hidden');
+	document.getElementById('modalTitle').textContent = 'Thêm Lịch Hẹn Mới';
+	clearForm();
+});
+
+closeAddModalBtn.addEventListener('click', () => addModal.classList.add('hidden'));
+cancelModalBtn.addEventListener('click', () => addModal.classList.add('hidden'));
+closeViewModalBtn.addEventListener('click', () => viewModal.classList.add('hidden'));
+closeViewBtn.addEventListener('click', () => viewModal.classList.add('hidden'));
+
+// Close modal when clicking outside
+addModal.addEventListener('click', function(e) {
+	if (e.target === addModal) addModal.classList.add('hidden');
+});
+
+viewModal.addEventListener('click', function(e) {
+	if (e.target === viewModal) viewModal.classList.add('hidden');
+});
+
+// View Details
+document.querySelectorAll('.view-btn').forEach(btn => {
+	btn.addEventListener('click', function() {
+		viewModal.classList.remove('hidden');
+	});
+});
+
+// Edit Appointment
+document.querySelectorAll('.edit-btn').forEach(btn => {
+	btn.addEventListener('click', function() {
+		addModal.classList.remove('hidden');
+		document.getElementById('modalTitle').textContent = 'Chỉnh Sửa Lịch Hẹn';
+		// Load data for editing
+	});
+});
+
+// Delete Appointment
+document.querySelectorAll('.delete-btn').forEach(btn => {
+	btn.addEventListener('click', function() {
+		if (confirm('Bạn có chắc chắn muốn xóa lịch hẹn này?')) {
+			const row = btn.closest('tr');
+			row.remove();
+			updateStats();
+		}
+	});
+});
+
+// Save Appointment
+document.getElementById('saveAppointment').addEventListener('click', function() {
+	const customerId = document.getElementById('customerId').value;
+	const petName = document.getElementById('petName').value;
+	const doctorId = document.getElementById('doctorId').value;
+	const serviceId = document.getElementById('serviceId').value;
+	const date = document.getElementById('appointmentDate').value;
+	const time = document.getElementById('appointmentTime').value;
+
+	if (!customerId || !petName || !doctorId || !serviceId || !date || !time) {
+		alert('Vui lòng điền đầy đủ thông tin bắt buộc!');
+		return;
+	}
+
+	addModal.classList.add('hidden');
+	clearForm();
+	updateStats();
+});
+
+// Filter Functions
+document.getElementById('filterStatus').addEventListener('change', filterAppointments);
+document.getElementById('filterDate').addEventListener('change', filterAppointments);
+document.getElementById('filterDoctor').addEventListener('change', filterAppointments);
+
+function filterAppointments() {
+	// Implement filtering logic
+	console.log('Filtering appointments...');
+}
+
+function updateStats() {
+	// Update statistics
+	console.log('Updating statistics...');
+}
+
+function clearForm() {
+	document.getElementById('customerId').value = '';
+	document.getElementById('petName').value = '';
+	document.getElementById('doctorId').value = '';
+	document.getElementById('serviceId').value = '';
+	document.getElementById('appointmentDate').value = '';
+	document.getElementById('appointmentTime').value = '';
+	document.getElementById('appointmentNote').value = '';
+	document.getElementById('appointmentStatus').value = 'pending';
+	document.getElementById('editIndex').value = '';
+}
+
+// Set today's date as default
+document.addEventListener('DOMContentLoaded', function() {
+	const today = new Date().toISOString().split('T')[0];
+	document.getElementById('appointmentDate').value = today;
+	console.log('Appointments page loaded successfully');
+});
+</script>
+</body>
+</html>

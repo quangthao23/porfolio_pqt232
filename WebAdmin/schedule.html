@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+	<link rel="stylesheet" href="css/style.css">
+	<title>Lịch Làm Việc - Quản Lý Phòng Khám</title>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<section id="sidebar">
+	<a href="#" class="brand">
+		<i class='bx bxs-clinic'></i>
+		<span class="text">PETCARE</span>
+	</a>
+	<ul class="side-menu top">
+		<li><a href="index.html"><i class='bx bxs-dashboard'></i><span class="text">Dashboard</span></a></li>
+		<li><a href="services.html"><i class='bx bxs-briefcase-alt-2'></i><span class="text">Dịch Vụ</span></a></li>
+		<li><a href="doctors.html"><i class='bx bxs-user-voice'></i><span class="text">Bác Sĩ</span></a></li>
+		<li><a href="appointments.html"><i class='bx bxs-calendar'></i><span class="text">Lịch Hẹn</span></a></li>
+		<li><a href="customers.html"><i class='bx bxs-group'></i><span class="text">Khách Hàng</span></a></li>
+		<li><a href="blogs.html"><i class='bx bxs-book-content'></i><span class="text">Blogs</span></a></li>
+		<li class="active"><a href="schedule.html"><i class='bx bxs-time'></i><span class="text">Lịch Làm Việc</span></a></li>
+		<li><a href="AccountManagement.html"><i class='bx bxs-user-account'></i><span class="text">Quản Lý Tài Khoản</span></a></li>
+	</ul>
+</section>
+
+<!-- CONTENT -->
+<section id="content">
+	<!-- NAVBAR -->
+	<nav>
+		<i class='bx bx-menu'></i>
+		<a class="nav-link">Lịch Làm Việc Phòng Khám</a>
+		<form action="#">
+			<div class="form-input">
+				<input type="search" placeholder="Tìm kiếm...">
+				<button type="submit" class="search-btn"><i class='bx bx-search'></i></button>
+			</div>
+		</form>
+		<input type="checkbox" id="switch-mode" hidden>
+		<!-- <a href="#" class="notification">
+			<i class='bx bxs-bell'></i>
+			<span class="num">5</span> -->
+		</a>
+		<a href="#" class="profile">
+			<img src="img/bs1.jpg" alt="Admin">
+		</a>
+	</nav>
+
+	<!-- MAIN -->
+	<main>
+		<!-- HEADER -->
+		<div class="head-title">
+			<div class="left">
+				<h1>Lịch Làm Việc Phòng Khám</h1>
+				<ul class="breadcrumb">
+					<li><a href="#">Bảng Điều Khiển</a></li>
+					<li><i class='bx bx-chevron-right'></i></li>
+					<li><a class="active" href="#">Lịch Làm Việc</a></li>
+				</ul>
+			</div>
+		</div>
+
+		<!-- SCHEDULE SUMMARY -->
+		<div class="schedule-summary">
+			<div class="summary-card">
+				<div class="summary-icon morning">
+					<i class='bx bxs-sun'></i>
+				</div>
+				<div class="summary-content">
+					<h3>42</h3>
+					<p>Ca Sáng (8h-12h)</p>
+				</div>
+			</div>
+
+			<div class="summary-card">
+				<div class="summary-icon afternoon">
+					<i class='bx bxs-cloud'></i>
+				</div>
+				<div class="summary-content">
+					<h3>38</h3>
+					<p>Ca Chiều (13h-17h)</p>
+				</div>
+			</div>
+
+			<div class="summary-card">
+				<div class="summary-icon evening">
+					<i class='bx bxs-moon'></i>
+				</div>
+				<div class="summary-content">
+					<h3>25</h3>
+					<p>Ca Tối (18h-21h)</p>
+				</div>
+			</div>
+
+			<div class="summary-card">
+				<div class="summary-icon total">
+					<i class='bx bxs-user-check'></i>
+				</div>
+				<div class="summary-content">
+					<h3>15</h3>
+					<p>Nhân Viên Đang Làm</p>
+				</div>
+			</div>
+		</div>
+
+		<!-- CALENDAR -->
+		<div class="calendar-container">
+			<div class="calendar-header">
+				<h2 id="currentMonthYear">Tháng 11, 2025</h2>
+				<div class="calendar-controls">
+					<button id="prevMonth"><i class='bx bx-chevron-left'></i></button>
+					<button id="todayBtn">Hôm nay</button>
+					<button id="nextMonth"><i class='bx bx-chevron-right'></i></button>
+					<select id="viewType">
+						<option value="month">Tháng</option>
+						<option value="week">Tuần</option>
+					</select>
+				</div>
+			</div>
+
+			<div class="calendar-grid">
+				<div class="calendar-day-header">Thứ 2</div>
+				<div class="calendar-day-header">Thứ 3</div>
+				<div class="calendar-day-header">Thứ 4</div>
+				<div class="calendar-day-header">Thứ 5</div>
+				<div class="calendar-day-header">Thứ 6</div>
+				<div class="calendar-day-header">Thứ 7</div>
+				<div class="calendar-day-header">Chủ Nhật</div>
+				
+				<div id="calendarDays"></div>
+			</div>
+
+			<div class="legend">
+				<div class="legend-item">
+					<div class="legend-color shift-morning"></div>
+					<span>Ca Sáng (8h-12h)</span>
+				</div>
+				<div class="legend-item">
+					<div class="legend-color shift-afternoon"></div>
+					<span>Ca Chiều (13h-17h)</span>
+				</div>
+				<div class="legend-item">
+					<div class="legend-color shift-evening"></div>
+					<span>Ca Tối (18h-21h)</span>
+				</div>
+			</div>
+		</div>
+
+		<!-- STAFF SCHEDULE LIST -->
+		<div class="staff-schedule-list">
+			<h3>Lịch Làm Việc Nhân Viên Tuần Này</h3>
+			
+			<div class="staff-item">
+				<div class="staff-info">
+					<div class="staff-avatar">
+						<img src="img/bs1.jpg" alt="BS. Nguyễn Văn A">
+					</div>
+					<div class="staff-details">
+						<h4>BS. Nguyễn Văn A</h4>
+						<p>Bác sĩ khám tổng quát</p>
+					</div>
+				</div>
+				<div class="staff-shifts">
+					<span class="shift-badge shift-morning">T2: Sáng</span>
+					<span class="shift-badge shift-morning">T4: Sáng</span>
+					<span class="shift-badge shift-afternoon">T6: Chiều</span>
+				</div>
+			</div>
+
+			<div class="staff-item">
+				<div class="staff-info">
+					<div class="staff-avatar">
+						<img src="img/bs2.jpg" alt="BS. Trần Thị B">
+					</div>
+					<div class="staff-details">
+						<h4>BS. Trần Thị B</h4>
+						<p>Bác sĩ tiêm phòng</p>
+					</div>
+				</div>
+				<div class="staff-shifts">
+					<span class="shift-badge shift-afternoon">T2: Chiều</span>
+					<span class="shift-badge shift-afternoon">T3: Chiều</span>
+					<span class="shift-badge shift-evening">T5: Tối</span>
+				</div>
+			</div>
+
+			<div class="staff-item">
+				<div class="staff-info">
+					<div class="staff-avatar">
+						<img src="img/bs1.jpg" alt="BS. Lê Văn C">
+					</div>
+					<div class="staff-details">
+						<h4>BS. Lê Văn C</h4>
+						<p>Bác sĩ phẫu thuật</p>
+					</div>
+				</div>
+				<div class="staff-shifts">
+					<span class="shift-badge shift-morning">T3: Sáng</span>
+					<span class="shift-badge shift-afternoon">T4: Chiều</span>
+					<span class="shift-badge shift-morning">T6: Sáng</span>
+				</div>
+			</div>
+
+			<div class="staff-item">
+				<div class="staff-info">
+					<div class="staff-avatar">
+						<img src="img/bs3.jpg" alt="Phạm Thị D">
+					</div>
+					<div class="staff-details">
+						<h4>Phạm Thị D</h4>
+						<p>Y tá</p>
+					</div>
+				</div>
+				<div class="staff-shifts">
+					<span class="shift-badge shift-morning">T2: Sáng</span>
+					<span class="shift-badge shift-afternoon">T2: Chiều</span>
+					<span class="shift-badge shift-morning">T5: Sáng</span>
+				</div>
+			</div>
+
+			<div class="staff-item">
+				<div class="staff-info">
+					<div class="staff-avatar">
+						<img src="img/bs4.jpg" alt="Hoàng Văn E">
+					</div>
+					<div class="staff-details">
+						<h4>Hoàng Văn E</h4>
+						<p>Kỹ thuật viên</p>
+					</div>
+				</div>
+				<div class="staff-shifts">
+					<span class="shift-badge shift-afternoon">T3: Chiều</span>
+					<span class="shift-badge shift-evening">T4: Tối</span>
+					<span class="shift-badge shift-afternoon">T6: Chiều</span>
+				</div>
+			</div>
+		</div>
+	</main>
+</section>
+
+<!-- MODAL ADD/EDIT SCHEDULE -->
+<div id="scheduleModal" class="modal">
+	<div class="modal-content">
+		<div class="modal-header">
+			<h3 id="modalTitle">Thêm Lịch Làm Việc</h3>
+			<span class="close-modal" onclick="closeModal()">&times;</span>
+		</div>
+		<form id="scheduleForm">
+			<div class="form-group">
+				<label>Ngày làm việc</label>
+				<input type="date" id="workDate" required>
+			</div>
+
+			<div class="form-group">
+				<label>Nhân viên</label>
+				<select id="staffSelect" required>
+					<option value="">-- Chọn nhân viên --</option>
+					<option value="1">BS. Nguyễn Văn A</option>
+					<option value="2">BS. Trần Thị B</option>
+					<option value="3">BS. Lê Văn C</option>
+					<option value="4">Phạm Thị D (Y tá)</option>
+					<option value="5">Hoàng Văn E (Kỹ thuật viên)</option>
+				</select>
+			</div>
+
+			<div class="form-group">
+				<label>Ca làm việc</label>
+				<div class="checkbox-group">
+					<label>
+						<input type="checkbox" name="shift" value="morning">
+						Ca Sáng (8h-12h)
+					</label>
+					<label>
+						<input type="checkbox" name="shift" value="afternoon">
+						Ca Chiều (13h-17h)
+					</label>
+					<label>
+						<input type="checkbox" name="shift" value="evening">
+						Ca Tối (18h-21h)
+					</label>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label>Ghi chú</label>
+				<textarea id="scheduleNotes" placeholder="Nhập ghi chú (không bắt buộc)"></textarea>
+			</div>
+
+			<div class="modal-actions">
+				<button type="button" class="btn btn-secondary" onclick="closeModal()">Hủy</button>
+				<button type="submit" class="btn btn-primary">Lưu Lịch</button>
+			</div>
+		</form>
+	</div>
+</div>
+
+<!-- ADD SCHEDULE BUTTON -->
+<button class="add-schedule-btn" onclick="openModal()">
+	<i class='bx bx-plus'></i>
+</button>
+
+<script src="js/script.js"></script>
+<script>
+// Toggle Sidebar
+const menuBar = document.querySelector('#content nav .bx.bx-menu');
+const sidebar = document.getElementById('sidebar');
+
+menuBar.addEventListener('click', function () {
+	sidebar.classList.toggle('hide');
+});
+
+// Dark Mode
+const switchMode = document.getElementById('switch-mode');
+if (switchMode) {
+	switchMode.addEventListener('change', function () {
+		document.body.classList.toggle('dark');
+	});
+}
+
+// Calendar Variables
+let currentDate = new Date();
+let currentMonth = currentDate.getMonth();
+let currentYear = currentDate.getFullYear();
+
+const monthNames = ["Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5", "Tháng 6",
+	"Tháng 7", "Tháng 8", "Tháng 9", "Tháng 10", "Tháng 11", "Tháng 12"];
+
+// Sample schedule data
+const scheduleData = {
+	'2025-11-24': [
+		{ staff: 'BS. Nguyễn Văn A', shift: 'morning' },
+		{ staff: 'BS. Trần Thị B', shift: 'afternoon' },
+		{ staff: 'Phạm Thị D', shift: 'morning' }
+	],
+	'2025-11-25': [
+		{ staff: 'BS. Lê Văn C', shift: 'morning' },
+		{ staff: 'Hoàng Văn E', shift: 'afternoon' }
+	],
+	'2025-11-26': [
+		{ staff: 'BS. Nguyễn Văn A', shift: 'morning' },
+		{ staff: 'BS. Trần Thị B', shift: 'evening' },
+		{ staff: 'Phạm Thị D', shift: 'afternoon' }
+	]
+};
+
+// Render Calendar
+function renderCalendar() {
+	const firstDay = new Date(currentYear, currentMonth, 1);
+	const lastDay = new Date(currentYear, currentMonth + 1, 0);
+	const prevLastDay = new Date(currentYear, currentMonth, 0);
+	
+	const firstDayIndex = firstDay.getDay();
+	const lastDayDate = lastDay.getDate();
+	const prevLastDayDate = prevLastDay.getDate();
+	
+	// Adjust for Monday start (0 = Monday, 6 = Sunday)
+	const adjustedFirstDay = firstDayIndex === 0 ? 6 : firstDayIndex - 1;
+	
+	document.getElementById('currentMonthYear').textContent = 
+		`${monthNames[currentMonth]}, ${currentYear}`;
+	
+	let days = '';
+	
+	// Previous month days
+	for (let x = adjustedFirstDay; x > 0; x--) {
+		const prevDate = prevLastDayDate - x + 1;
+		days += `<div class="calendar-day other-month">
+			<div class="day-number">${prevDate}</div>
+		</div>`;
+	}
+	
+	// Current month days
+	for (let i = 1; i <= lastDayDate; i++) {
+		const dateKey = `${currentYear}-${String(currentMonth + 1).padStart(2, '0')}-${String(i).padStart(2, '0')}`;
+		const isToday = i === currentDate.getDate() && 
+						currentMonth === currentDate.getMonth() && 
+						currentYear === currentDate.getFullYear();
+		
+		const daySchedules = scheduleData[dateKey] || [];
+		
+		let shiftsHTML = '';
+		const shiftCounts = { morning: 0, afternoon: 0, evening: 0 };
+		
+		daySchedules.forEach(schedule => {
+			shiftCounts[schedule.shift]++;
+		});
+		
+		if (shiftCounts.morning > 0) {
+			shiftsHTML += `<div class="shift-item shift-morning">
+				<i class='bx bxs-sun'></i> ${shiftCounts.morning} người
+			</div>`;
+		}
+		if (shiftCounts.afternoon > 0) {
+			shiftsHTML += `<div class="shift-item shift-afternoon">
+				<i class='bx bxs-cloud'></i> ${shiftCounts.afternoon} người
+			</div>`;
+		}
+		if (shiftCounts.evening > 0) {
+			shiftsHTML += `<div class="shift-item shift-evening">
+				<i class='bx bxs-moon'></i> ${shiftCounts.evening} người
+			</div>`;
+		}
+		
+		days += `<div class="calendar-day ${isToday ? 'today' : ''}" onclick="viewDaySchedule('${dateKey}')">
+			<div class="day-number">${i}</div>
+			<div class="day-shifts">${shiftsHTML}</div>
+		</div>`;
+	}
+	
+	// Next month days
+	const totalDays = adjustedFirstDay + lastDayDate;
+	const nextDays = 42 - totalDays;
+	
+	for (let j = 1; j <= nextDays; j++) {
+		days += `<div class="calendar-day other-month">
+			<div class="day-number">${j}</div>
+		</div>`;
+	}
+	
+	document.getElementById('calendarDays').innerHTML = days;
+}
+
+// Navigation
+document.getElementById('prevMonth').addEventListener('click', () => {
+	currentMonth--;
+	if (currentMonth < 0) {
+		currentMonth = 11;
+		currentYear--;
+	}
+	renderCalendar();
+});
+
+document.getElementById('nextMonth').addEventListener('click', () => {
+	currentMonth++;
+	if (currentMonth > 11) {
+		currentMonth = 0;
+		currentYear++;
+	}
+	renderCalendar();
+});
+
+document.getElementById('todayBtn').addEventListener('click', () => {
+	currentDate = new Date();
+	currentMonth = currentDate.getMonth();
+	currentYear = currentDate.getFullYear();
+	renderCalendar();
+});
+
+// Modal Functions
+function openModal() {
+	document.getElementById('scheduleModal').classList.add('active');
+	document.getElementById('scheduleForm').reset();
+	document.getElementById('modalTitle').textContent = 'Thêm Lịch Làm Việc';
+}
+
+function closeModal() {
+	document.getElementById('scheduleModal').classList.remove('active');
+}
+
+function viewDaySchedule(dateKey) {
+	const schedules = scheduleData[dateKey] || [];
+	if (schedules.length === 0) {
+		alert(`Không có lịch làm việc cho ngày ${dateKey}`);
+		return;
+	}
+	
+	let message = `Lịch làm việc ngày ${dateKey}:\n\n`;
+	schedules.forEach(schedule => {
+		const shiftName = schedule.shift === 'morning' ? 'Sáng' : 
+						  schedule.shift === 'afternoon' ? 'Chiều' : 'Tối';
+		message += `• ${schedule.staff} - Ca ${shiftName}\n`;
+	});
+	
+	alert(message);
+}
+
+// Form Submit
+document.getElementById('scheduleForm').addEventListener('submit', (e) => {
+	e.preventDefault();
+	
+	const workDate = document.getElementById('workDate').value;
+	const staffSelect = document.getElementById('staffSelect');
+	const staffName = staffSelect.options[staffSelect.selectedIndex].text;
+	const shifts = document.querySelectorAll('input[name="shift"]:checked');
+	const notes = document.getElementById('scheduleNotes').value;
+	
+	if (shifts.length === 0) {
+		alert('Vui lòng chọn ít nhất một ca làm việc!');
+		return;
+	}
+	
+	// Add to schedule data
+	if (!scheduleData[workDate]) {
+		scheduleData[workDate] = [];
+	}
+	
+	shifts.forEach(shift => {
+		scheduleData[workDate].push({
+			staff: staffName,
+			shift: shift.value
+		});
+	});
+	
+	alert('Đã thêm lịch làm việc thành công!');
+	closeModal();
+	renderCalendar();
+});
+
+// Click outside modal to close
+document.getElementById('scheduleModal').addEventListener('click', (e) => {
+	if (e.target.id === 'scheduleModal') {
+		closeModal();
+	}
+});
+
+// Initialize
+document.addEventListener('DOMContentLoaded', function() {
+	renderCalendar();
+	console.log('Schedule page loaded successfully');
+});
+</script>
+<script src="js/script.js"></script>
+</body>
+</html>

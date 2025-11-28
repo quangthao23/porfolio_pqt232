@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+	<link rel="stylesheet" href="css/style.css">
+	<title>Dashboard - Quản Lý Phòng Khám</title>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<section id="sidebar">
+	<a href="#" class="brand">
+		<i class='bx bxs-clinic'></i>
+		<span class="text">PETCARE</span>
+	</a>
+	<ul class="side-menu top">
+		<li class="active"><a href="index.html"><i class='bx bxs-dashboard'></i><span class="text">Dashboard</span></a></li>
+		<li><a href="services.html"><i class='bx bxs-briefcase-alt-2'></i><span class="text">Dịch Vụ</span></a></li>
+		<li><a href="doctors.html"><i class='bx bxs-user-voice'></i><span class="text">Bác Sĩ</span></a></li>
+		<li><a href="appointments.html"><i class='bx bxs-calendar'></i><span class="text">Lịch Hẹn</span></a></li>
+		<li><a href="customers.html"><i class='bx bxs-group'></i><span class="text">Khách Hàng</span></a></li>
+		<li><a href="blogs.html"><i class='bx bxs-book-content'></i><span class="text">Blogs</span></a></li>
+		<li><a href="schedule.html"><i class='bx bxs-time-five'></i><span class="text">Lịch Làm Việc</span></a></li>
+		<li><a href="AccountManagement.html"><i class='bx bxs-user-account'></i><span class="text">Quản Lý Tài Khoản</span></a></li>
+	</ul>
+</section>
+
+<!-- CONTENT -->
+<section id="content">
+	<!-- NAVBAR -->
+	<nav>
+		<i class='bx bx-menu'></i>
+		<a class="nav-link">Dashboard Tổng Quan</a>
+		<form action="#">
+			<div class="form-input">
+				<input type="search" placeholder="Tìm kiếm...">
+				<button type="submit" class="search-btn"><i class='bx bx-search'></i></button>
+			</div>
+		</form>
+		<input type="checkbox" id="switch-mode" hidden>
+		<a href="#" class="profile">
+			<img src="img/bs1.jpg" alt="Admin">
+		</a>
+	</nav>
+
+	<!-- MAIN -->
+	<main>
+		<!-- HEADER -->
+		<div class="head-title">
+			<div class="left">
+				<h1>Dashboard Tổng Quan</h1>
+				<ul class="breadcrumb">
+					<li><a href="#">Bảng Điều Khiển</a></li>
+					<li><i class='bx bx-chevron-right'></i></li>
+					<li><a class="active" href="#">Tổng Quan</a></li>
+				</ul>
+			</div>
+			</div>
+		</div>
+
+		<!-- STATISTICS CARDS -->
+		<ul class="box-info">
+			<li>
+				<i class='bx bxs-dollar-circle'></i>
+				<span class="text">
+					<h3 id="totalRevenue">1.250.000.000đ</h3>
+					<p>Tổng Doanh Thu</p>
+					<!-- <span class="trend up">
+						<i class='bx bx-trending-up'></i> +15% so với tháng trước
+					</span> -->
+				</span>
+			</li>
+
+			<li>
+				<i class='bx bxs-calendar-check'></i>
+				<span class="text">
+					<h3 id="totalAppointments">1,248</h3>
+					<p>Tổng Lịch Hẹn</p>
+					<!-- <span class="trend up">
+						<i class='bx bx-trending-up'></i> +8% so với tháng trước
+					</span> -->
+				</span>
+			</li>
+
+			<li>
+				<i class='bx bxs-user-voice'></i>
+				<span class="text">
+					<h3 id="doctorPerformance">95%</h3>
+					<p>Hiệu Suất Bác Sĩ</p>
+					<!-- <span class="trend up">
+						<i class='bx bx-trending-up'></i> +3% so với tháng trước
+					</span> -->
+				</span>
+			</li>
+		</ul>
+
+		<!-- SECONDARY STATS -->
+		<div class="stats-grid">
+			<div class="stat-card">
+				<div class="stat-icon">
+					<i class='bx bxs-check-circle'></i>
+				</div>
+				<div class="stat-content">
+					<h4>Lịch Hẹn Hoàn Thành</h4>
+					<h2 id="completedAppointments">1,105</h2>
+					<p class="stat-detail">88.5% tỷ lệ hoàn thành</p>
+				</div>
+			</div>
+
+			<div class="stat-card">
+				<div class="stat-icon">
+					<i class='bx bxs-time-five'></i>
+				</div>
+				<div class="stat-content">
+					<h4>Lịch Hẹn Đang Chờ</h4>
+					<h2 id="pendingAppointments">87</h2>
+					<p class="stat-detail">7% tổng số lịch hẹn</p>
+				</div>
+			</div>
+			<div class="stat-card">
+				<div class="stat-icon">
+					<i class='bx bxs-star'></i>
+				</div>
+				<div class="stat-content">
+					<h4>Đánh Giá Trung Bình</h4>
+					<h2 id="avgRating">4.8/5.0</h2>
+					<p class="stat-detail">Từ 523 đánh giá</p>
+				</div>
+			</div>
+		</div>
+
+		<!-- TABLES SECTION -->
+		<div class="table-data">
+			<!-- RECENT APPOINTMENTS -->
+			<div class="order">
+				<div class="head">
+					<h3>Lịch Hẹn Gần Đây</h3>
+					<div class="head-actions">
+						<i class='bx bx-search'></i>
+						<i class='bx bx-filter'></i>
+					</div>
+				</div>
+				<table>
+					<thead>
+						<tr>
+							<th>Khách Hàng</th>
+							<th>Bác Sĩ</th>
+							<th>Dịch Vụ</th>
+							<th>Ngày</th>
+							<th>Giờ</th>
+							<th>Trạng Thái</th>
+						</tr>
+					</thead>
+					<tbody id="recentAppointmentsTable">
+						<tr>
+							<td>
+								<p>Nguyễn Văn A</p>
+							</td>
+							<td>BS. Trần Thị B</td>
+							<td>Khám Tổng Quát</td>
+							<td>23-11-2025</td>
+							<td>09:00</td>
+							<td><span class="status completed">Hoàn Thành</span></td>
+						</tr>
+						<tr>
+							<td>
+								<p>Lê Thị C</p>
+							</td>
+							<td>BS. Phạm Văn D</td>
+							<td>Tiêm Phòng</td>
+							<td>23-11-2025</td>
+							<td>10:30</td>
+							<td><span class="status pending">Đang Chờ</span></td>
+						</tr>
+						<tr>
+							<td>
+								<p>Hoàng Văn E</p>
+							</td>
+							<td>BS. Trần Thị B</td>
+							<td>Phẫu Thuật</td>
+							<td>23-11-2025</td>
+							<td>14:00</td>
+							<td><span class="status process">Đang Xử Lý</span></td>
+						</tr>
+						<tr>
+							<td>
+								<p>Đặng Thị F</p>
+							</td>
+							<td>BS. Lê Văn G</td>
+							<td>Khám Tổng Quát</td>
+							<td>22-11-2025</td>
+							<td>15:30</td>
+							<td><span class="status completed">Hoàn Thành</span></td>
+						</tr>
+						<tr>
+							<td>
+								<p>Phan Văn H</p>
+							</td>
+							<td>BS. Nguyễn Thị I</td>
+							<td>Cắt Tỉa Lông</td>
+							<td>22-11-2025</td>
+							<td>16:00</td>
+							<td><span class="status completed">Hoàn Thành</span></td>
+						</tr>
+					</tbody>
+				</table>
+				<div class="table-footer">
+					<a href="appointments.html" class="view-all">Xem tất cả lịch hẹn →</a>
+				</div>
+			</div>
+
+			<!-- TOP SERVICES -->
+			<div class="todo">
+				<div class="head">
+					<h3>Dịch Vụ Phổ Biến</h3>
+					<i class='bx bx-filter'></i>
+				</div>
+				<ul class="service-list">
+					<li class="service-item">
+						<div class="service-info">
+							<i class='bx bxs-check-circle'></i>
+							<div>
+								<p class="service-name">Khám Tổng Quát</p>
+								<span class="service-count">425 lượt</span>
+							</div>
+						</div>
+						<span class="service-revenue">425.000.000đ</span>
+					<!-- </li>
+					<li class="service-item">
+						<div class="service-info">
+							<i class='bx bxs-injection'></i>
+							<div>
+								<p class="service-name">Tiêm Phòng</p>
+								<span class="service-count">312 lượt</span>
+							</div>
+						</div>
+						<span class="service-revenue">312.000.000đ</span>
+					</li> -->
+					<li class="service-item">
+						<div class="service-info">
+							<i class='bx bxs-first-aid'></i>
+							<div>
+								<p class="service-name">Phẫu Thuật</p>
+								<span class="service-count">156 lượt</span>
+							</div>
+						</div>
+						<span class="service-revenue">312.000.000đ</span>
+					</li>
+					<li class="service-item">
+						<div class="service-info">
+							<i class='bx bxs-spa'></i>
+							<div>
+								<p class="service-name">Cắt Tỉa Lông</p>
+								<span class="service-count">245 lượt</span>
+							</div>
+						</div>
+						<span class="service-revenue">122.500.000đ</span>
+					</li>
+					<li class="service-item">
+						<div class="service-info">
+							<i class='bx bxs-capsule'></i>
+							<div>
+								<p class="service-name">Nha Khoa</p>
+								<span class="service-count">110 lượt</span>
+							</div>
+						</div>
+						<span class="service-revenue">77.000.000đ</span>
+					</li>
+				</ul>
+				<div class="table-footer">
+					<a href="services.html" class="view-all">Xem tất cả dịch vụ →</a>
+				</div>
+			</div>
+		</div>
+
+		<!-- DOCTOR PERFORMANCE -->
+		<div class="doctor-performance-section">
+			<div class="section-header">
+				<h3>Hiệu Suất Bác Sĩ</h3>
+				<a href="doctors.html" class="view-all">Xem chi tiết →</a>
+			</div>
+			<div class="doctor-performance-grid">
+				<div class="doctor-performance-card">
+					<div class="doctor-avatar">
+						<img src="img/bs1.jpg" alt="Doctor">
+					</div>
+					<div class="doctor-info">
+						<h4>BS. Nguyễn Văn A</h4>
+						<p>Khám Tổng Quát</p>
+					</div>
+					<div class="doctor-stats">
+						<div class="stat-item">
+							<span class="stat-label">Lịch hẹn</span>
+							<span class="stat-value">285</span>
+						</div>
+						<div class="stat-item">
+							<span class="stat-label">Đánh giá</span>
+							<span class="stat-value">4.9⭐</span>
+						</div>
+						<div class="stat-item">
+							<span class="stat-label">Hiệu suất</span>
+							<span class="stat-value success">98%</span>
+						</div>
+					</div>
+				</div>
+
+				<div class="doctor-performance-card">
+					<div class="doctor-avatar">
+						<img src="img/bs2.jpg" alt="Doctor">
+					</div>
+					<div class="doctor-info">
+						<h4>BS. Trần Thị B</h4>
+						<p>Tiêm Phòng</p>
+					</div>
+					<div class="doctor-stats">
+						<div class="stat-item">
+							<span class="stat-label">Lịch hẹn</span>
+							<span class="stat-value">256</span>
+						</div>
+						<div class="stat-item">
+							<span class="stat-label">Đánh giá</span>
+							<span class="stat-value">4.8⭐</span>
+						</div>
+						<div class="stat-item">
+							<span class="stat-label">Hiệu suất</span>
+							<span class="stat-value success">96%</span>
+						</div>
+					</div>
+				</div>
+
+				<div class="doctor-performance-card">
+					<div class="doctor-avatar">
+						<img src="img/bs4.jpg" alt="Doctor">
+					</div>
+					<div class="doctor-info">
+						<h4>BS. Lê Văn C</h4>
+						<p>Phẫu Thuật</p>
+					</div>
+					<div class="doctor-stats">
+						<div class="stat-item">
+							<span class="stat-label">Lịch hẹn</span>
+							<span class="stat-value">198</span>
+						</div>
+						<div class="stat-item">
+							<span class="stat-label">Đánh giá</span>
+							<span class="stat-value">4.7⭐</span>
+						</div>
+						<div class="stat-item">
+							<span class="stat-label">Hiệu suất</span>
+							<span class="stat-value success">92%</span>
+						</div>
+					</div>
+				</div>
+
+				<div class="doctor-performance-card">
+					<div class="doctor-avatar">
+						<img src="img/bs3.jpg" alt="Doctor">
+					</div>
+					<div class="doctor-info">
+						<h4>BS. Phạm Thị D</h4>
+						<p>Nha Khoa</p>
+					</div>
+					<div class="doctor-stats">
+						<div class="stat-item">
+							<span class="stat-label">Lịch hẹn</span>
+							<span class="stat-value">167</span>
+						</div>
+						<div class="stat-item">
+							<span class="stat-label">Đánh giá</span>
+							<span class="stat-value">4.6⭐</span>
+						</div>
+						<div class="stat-item">
+							<span class="stat-label">Hiệu suất</span>
+							<span class="stat-value success">90%</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+</section>
+
+<script src="js/script.js"></script>
+<script>
+// Toggle Sidebar
+const menuBar = document.querySelector('#content nav .bx.bx-menu');
+const sidebar = document.getElementById('sidebar');
+
+menuBar.addEventListener('click', function () {
+	sidebar.classList.toggle('hide');
+});
+
+// Dark Mode
+const switchMode = document.getElementById('switch-mode');
+if (switchMode) {
+	switchMode.addEventListener('change', function () {
+		document.body.classList.toggle('dark');
+	});
+}
+
+// Date Range Filter
+const dateRange = document.getElementById('dateRange');
+dateRange.addEventListener('change', function() {
+	const range = this.value;
+	updateDashboardData(range);
+});
+
+function updateDashboardData(range) {
+	// Simulate data update based on date range
+	console.log('Updating dashboard for range:', range);
+	// Here you would typically fetch data from your backend
+}
+
+// Format currency
+function formatCurrency(amount) {
+	return new Intl.NumberFormat('vi-VN', {
+		style: 'currency',
+		currency: 'VND'
+	}).format(amount);
+}
+
+// Initialize dashboard
+document.addEventListener('DOMContentLoaded', function() {
+	console.log('Dashboard loaded successfully');
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+	<link rel="stylesheet" href="css/style.css">
+	<title>Quản Lý Tài Khoản - Clinic Admin</title>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<section id="sidebar">
+	<a href="#" class="brand">
+		<i class='bx bxs-clinic'></i>
+		<span class="text">PETCARE</span>
+	</a>
+	<ul class="side-menu top">
+		<li><a href="index.html"><i class='bx bxs-dashboard'></i><span class="text">Dashboard</span></a></li>
+		<li><a href="services.html"><i class='bx bxs-briefcase-alt-2'></i><span class="text">Dịch Vụ</span></a></li>
+		<li><a href="doctors.html"><i class='bx bxs-user-voice'></i><span class="text">Bác Sĩ</span></a></li>
+		<li><a href="appointments.html"><i class='bx bxs-calendar'></i><span class="text">Lịch Hẹn</span></a></li>
+		<li><a href="customers.html"><i class='bx bxs-group'></i><span class="text">Khách Hàng</span></a></li>
+		<li><a href="blogs.html"><i class='bx bxs-book-content'></i><span class="text">Blogs</span></a></li>
+		<li><a href="schedule.html"><i class='bx bxs-time-five'></i><span class="text">Lịch Làm Việc</span></a></li>
+		<li class="active"><a href="AccountManagement.html"><i class='bx bxs-user-account'></i><span class="text">Quản Lý Tài Khoản</span></a></li>
+	</ul>
+</section>
+
+<!-- CONTENT -->
+<section id="content">
+	<!-- NAVBAR -->
+	<nav>
+		<i class='bx bx-menu'></i>
+		<a href="#" class="nav-link">Quản Lý Tài Khoản</a>
+		<form action="#">
+			<div class="form-input">
+				<input type="search" placeholder="Tìm kiếm...">
+				<button type="submit" class="search-btn"><i class='bx bx-search'></i></button>
+			</div>
+		</form>
+		<input type="checkbox" id="switch-mode" hidden>
+		<!-- <a href="#" class="notification">
+			<i class='bx bxs-bell'></i>
+			<span class="num">8</span>
+		</a> -->
+		<a href="#" class="profile">
+			<img src="img/bs1.jpg" alt="Profile">
+		</a>
+	</nav>
+
+	<!-- MAIN -->
+	<main>
+		<!-- HEADER -->
+		<div class="account-header">
+			<div>
+				<h1>Quản lý Tài khoản</h1>
+				<p style="color: #666; margin-top: 5px;">Quản lý người dùng và phân quyền hệ thống</p>
+			</div>
+			<button class="add-btn" id="btnAddUser">
+				<i class='bx bx-plus'></i>
+				Thêm tài khoản mới
+			</button>
+		</div>
+
+		<!-- FILTERS -->
+		<div class="account-filters">
+			<input type="text" class="search-input" id="searchInput" placeholder="Tìm kiếm...">
+			<select class="filter-select" id="filterRole">
+				<option value="">Tất cả chức vụ</option>
+				<option value="admin">Admin</option>
+				<option value="doctor">Bác Sĩ</option>
+				<option value="staff">Nhân Viên</option>
+			</select>
+			<select class="filter-select" id="filterStatus">
+				<option value="">Tất cả trạng thái</option>
+				<option value="active">Hoạt động</option>
+				<option value="inactive">Không hoạt động</option>
+				<option value="locked">Bị khóa</option>
+			</select>
+		</div>
+
+		<!-- TABLE -->
+		<div class="table-wrapper">
+			<table id="userTable">
+				<thead>
+					<tr>
+						<th>TÊN</th>
+						<th>EMAIL</th>
+						<th>CHỨC VỤ</th>
+						<th>SỐ ĐIỆN THOẠI</th>
+						<th>TRẠNG THÁI</th>
+						<th>NGÀY TẠO</th>
+						<th style="text-align: center;">HÀNH ĐỘNG</th>
+					</tr>
+				</thead>
+				<tbody id="userTableBody">
+					<!-- ADMIN -->
+					<tr data-id="1">
+						<td>Nguyễn Văn Admin</td>
+						<td>admin@clinic.vn</td>
+						<td><span class="user-role admin">Admin</span></td>
+						<td>0900000001</td>
+						<td><span class="user-status active">Hoạt động</span></td>
+						<td>01-01-2025</td>
+						<td>
+							<div class="user-actions">
+								<i class='bx bx-edit' title="Chỉnh sửa"></i>
+								<i class='bx bx-trash' title="Xóa"></i>
+								<i class='bx bx-lock-open' title="Khóa tài khoản"></i>
+							</div>
+						</td>
+					</tr>
+
+					<!-- BÁC SĨ -->
+					<tr data-id="2">
+						<td>BS. Nguyễn Văn A</td>
+						<td>nguyenvana@clinic.vn</td>
+						<td><span class="user-role doctor">Bác Sĩ</span></td>
+						<td>0901234567</td>
+						<td><span class="user-status active">Hoạt động</span></td>
+						<td>12-11-2025</td>
+						<td>
+							<div class="user-actions">
+								<i class='bx bx-edit' title="Chỉnh sửa"></i>
+								<i class='bx bx-trash' title="Xóa"></i>
+								<i class='bx bx-lock-open' title="Khóa tài khoản"></i>
+							</div>
+						</td>
+					</tr>
+
+					<tr data-id="3">
+						<td>BS. Trần Thị B</td>
+						<td>tranthib@clinic.vn</td>
+						<td><span class="user-role doctor">Bác Sĩ</span></td>
+						<td>0908765432</td>
+						<td><span class="user-status active">Hoạt động</span></td>
+						<td>10-10-2025</td>
+						<td>
+							<div class="user-actions">
+								<i class='bx bx-edit' title="Chỉnh sửa"></i>
+								<i class='bx bx-trash' title="Xóa"></i>
+								<i class='bx bx-lock-open' title="Khóa tài khoản"></i>
+							</div>
+						</td>
+					</tr>
+
+					<tr data-id="4">
+						<td>BS. Lê Văn C</td>
+						<td>levanc@clinic.vn</td>
+						<td><span class="user-role doctor">Bác Sĩ</span></td>
+						<td>0912345678</td>
+						<td><span class="user-status active">Hoạt động</span></td>
+						<td>05-09-2025</td>
+						<td>
+							<div class="user-actions">
+								<i class='bx bx-edit' title="Chỉnh sửa"></i>
+								<i class='bx bx-trash' title="Xóa"></i>
+								<i class='bx bx-lock-open' title="Khóa tài khoản"></i>
+							</div>
+						</td>
+					</tr>
+
+					<tr data-id="5">
+						<td>BS. Phạm Minh D</td>
+						<td>phamminhd@clinic.vn</td>
+						<td><span class="user-role doctor">Bác Sĩ</span></td>
+						<td>0923456789</td>
+						<td><span class="user-status locked">Bị khóa</span></td>
+						<td>15-08-2025</td>
+						<td>
+							<div class="user-actions">
+								<i class='bx bx-edit' title="Chỉnh sửa"></i>
+								<i class='bx bx-trash' title="Xóa"></i>
+								<i class='bx bx-lock' title="Mở khóa tài khoản"></i>
+							</div>
+						</td>
+					</tr>
+
+					<tr data-id="6">
+						<td>BS. Hoàng Thị E</td>
+						<td>hoangthie@clinic.vn</td>
+						<td><span class="user-role doctor">Bác Sĩ</span></td>
+						<td>0934567890</td>
+						<td><span class="user-status active">Hoạt động</span></td>
+						<td>20-07-2025</td>
+						<td>
+							<div class="user-actions">
+								<i class='bx bx-edit' title="Chỉnh sửa"></i>
+								<i class='bx bx-trash' title="Xóa"></i>
+								<i class='bx bx-lock-open' title="Khóa tài khoản"></i>
+							</div>
+						</td>
+					</tr>
+
+					<!-- NHÂN VIÊN -->
+					<tr data-id="7">
+						<td>Nguyễn Thị F</td>
+						<td>nguyenthif@clinic.vn</td>
+						<td><span class="user-role staff">Nhân Viên</span></td>
+						<td>0945678901</td>
+						<td><span class="user-status active">Hoạt động</span></td>
+						<td>01-08-2025</td>
+						<td>
+							<div class="user-actions">
+								<i class='bx bx-edit' title="Chỉnh sửa"></i>
+								<i class='bx bx-trash' title="Xóa"></i>
+								<i class='bx bx-lock-open' title="Khóa tài khoản"></i>
+							</div>
+						</td>
+					</tr>
+
+					<tr data-id="8">
+						<td>Trần Văn G</td>
+						<td>tranvang@clinic.vn</td>
+						<td><span class="user-role staff">Nhân Viên</span></td>
+						<td>0956789012</td>
+						<td><span class="user-status active">Hoạt động</span></td>
+						<td>15-07-2025</td>
+						<td>
+							<div class="user-actions">
+								<i class='bx bx-edit' title="Chỉnh sửa"></i>
+								<i class='bx bx-trash' title="Xóa"></i>
+								<i class='bx bx-lock-open' title="Khóa tài khoản"></i>
+							</div>
+						</td>
+					</tr>
+
+					<tr data-id="9">
+						<td>Lê Thị H</td>
+						<td>lethih@clinic.vn</td>
+						<td><span class="user-role staff">Nhân Viên</span></td>
+						<td>0967890123</td>
+						<td><span class="user-status inactive">Không hoạt động</span></td>
+						<td>20-06-2025</td>
+						<td>
+							<div class="user-actions">
+								<i class='bx bx-edit' title="Chỉnh sửa"></i>
+								<i class='bx bx-trash' title="Xóa"></i>
+								<i class='bx bx-lock' title="Mở khóa tài khoản"></i>
+							</div>
+						</td>
+					</tr>
+
+					<tr data-id="10">
+						<td>Phạm Văn I</td>
+						<td>phamvani@clinic.vn</td>
+						<td><span class="user-role staff">Nhân Viên</span></td>
+						<td>0978901234</td>
+						<td><span class="user-status active">Hoạt động</span></td>
+						<td>05-06-2025</td>
+						<td>
+							<div class="user-actions">
+								<i class='bx bx-edit' title="Chỉnh sửa"></i>
+								<i class='bx bx-trash' title="Xóa"></i>
+								<i class='bx bx-lock-open' title="Khóa tài khoản"></i>
+							</div>
+						</td>
+					</tr>
+
+					<tr data-id="11">
+						<td>Hoàng Thị K</td>
+						<td>hoangthik@clinic.vn</td>
+						<td><span class="user-role staff">Nhân Viên</span></td>
+						<td>0989012345</td>
+						<td><span class="user-status active">Hoạt động</span></td>
+						<td>10-05-2025</td>
+						<td>
+							<div class="user-actions">
+								<i class='bx bx-edit' title="Chỉnh sửa"></i>
+								<i class='bx bx-trash' title="Xóa"></i>
+								<i class='bx bx-lock-open' title="Khóa tài khoản"></i>
+							</div>
+						</td>
+					</tr>
+
+					<tr data-id="12">
+						<td>Đặng Văn L</td>
+						<td>dangvanl@clinic.vn</td>
+						<td><span class="user-role staff">Nhân Viên</span></td>
+						<td>0990123456</td>
+						<td><span class="user-status locked">Bị khóa</span></td>
+						<td>01-05-2025</td>
+						<td>
+							<div class="user-actions">
+								<i class='bx bx-edit' title="Chỉnh sửa"></i>
+								<i class='bx bx-trash' title="Xóa"></i>
+								<i class='bx bx-lock' title="Mở khóa tài khoản"></i>
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</main>
+</section>
+
+<!-- USER MODAL -->
+<div id="userModal">
+	<div class="modal-content">
+		<h2 id="userModalTitle">Thêm Tài Khoản Mới</h2>
+		<form id="userForm">
+			<div class="form-row">
+				<div>
+					<label for="userName">Họ và Tên *</label>
+					<input type="text" id="userName" required placeholder="VD: Nguyễn Văn A">
+				</div>
+				<div>
+					<label for="userRole">Chức vụ *</label>
+					<select id="userRole" required>
+						<option value="">Chọn chức vụ</option>
+						<option value="admin">Admin</option>
+						<option value="doctor">Bác Sĩ</option>
+						<option value="staff">Nhân Viên</option>
+					</select>
+				</div>
+			</div>
+
+			<label for="userEmail">Email *</label>
+			<input type="email" id="userEmail" required placeholder="example@clinic.vn">
+
+			<div class="form-row">
+				<div>
+					<label for="userPhone">Số điện thoại *</label>
+					<input type="tel" id="userPhone" required placeholder="09xxxxxxxx">
+				</div>
+				<div>
+					<label for="userStatus">Trạng thái *</label>
+					<select id="userStatus" required>
+						<option value="active">Hoạt động</option>
+						<option value="inactive">Không hoạt động</option>
+						<option value="locked">Bị khóa</option>
+					</select>
+				</div>
+			</div>
+
+			<label for="userPassword">Mật khẩu *</label>
+			<input type="password" id="userPassword" required placeholder="Nhập mật khẩu">
+
+			<div class="modal-actions">
+				<button type="button" class="btn-cancel-user" id="btnCancelUser">Hủy</button>
+				<button type="submit" class="btn-save-user">Lưu</button>
+			</div>
+		</form>
+	</div>
+</div>
+
+<script>
+// Toggle Sidebar
+const menuBar = document.querySelector('#content nav .bx.bx-menu');
+const sidebar = document.getElementById('sidebar');
+
+menuBar.addEventListener('click', function () {
+	sidebar.classList.toggle('hide');
+});
+
+// Search and Filter functionality
+const searchInput = document.getElementById('searchInput');
+const filterRole = document.getElementById('filterRole');
+const filterStatus = document.getElementById('filterStatus');
+const tableBody = document.getElementById('userTableBody');
+
+function filterTable() {
+	const searchValue = searchInput.value.toLowerCase();
+	const roleValue = filterRole.value.toLowerCase();
+	const statusValue = filterStatus.value.toLowerCase();
+	const rows = tableBody.getElementsByTagName('tr');
+
+	for (let row of rows) {
+		const name = row.cells[0].textContent.toLowerCase();
+		const email = row.cells[1].textContent.toLowerCase();
+		const phone = row.cells[3].textContent.toLowerCase();
+		const roleText = row.cells[2].querySelector('.user-role').className.toLowerCase();
+		const statusText = row.cells[4].querySelector('.user-status').className.toLowerCase();
+
+		const matchSearch = name.includes(searchValue) || email.includes(searchValue) || phone.includes(searchValue);
+		const matchRole = !roleValue || roleText.includes(roleValue);
+		const matchStatus = !statusValue || statusText.includes(statusValue);
+
+		if (matchSearch && matchRole && matchStatus) {
+			row.style.display = '';
+		} else {
+			row.style.display = 'none';
+		}
+	}
+}
+
+searchInput.addEventListener('input', filterTable);
+filterRole.addEventListener('change', filterTable);
+filterStatus.addEventListener('change', filterTable);
+
+// Modal functionality
+const userModal = document.getElementById('userModal');
+const btnAddUser = document.getElementById('btnAddUser');
+const btnCancelUser = document.getElementById('btnCancelUser');
+const userForm = document.getElementById('userForm');
+const userModalTitle = document.getElementById('userModalTitle');
+let editingRowId = null;
+
+btnAddUser.addEventListener('click', function() {
+	userModalTitle.textContent = 'Thêm Tài Khoản Mới';
+	userForm.reset();
+	editingRowId = null;
+	userModal.style.display = 'flex';
+});
+
+btnCancelUser.addEventListener('click', function() {
+	userModal.style.display = 'none';
+});
+
+// Close modal when clicking outside
+userModal.addEventListener('click', function(e) {
+	if (e.target === userModal) {
+		userModal.style.display = 'none';
+	}
+});
+
+// Form submit
+userForm.addEventListener('submit', function(e) {
+	e.preventDefault();
+	
+	const name = document.getElementById('userName').value;
+	const email = document.getElementById('userEmail').value;
+	const role = document.getElementById('userRole').value;
+	const phone = document.getElementById('userPhone').value;
+	const status = document.getElementById('userStatus').value;
+
+	const roleMap = {
+		'admin': 'Admin',
+		'doctor': 'Bác Sĩ',
+		'staff': 'Nhân Viên'
+	};
+
+	const statusMap = {
+		'active': 'Hoạt động',
+		'inactive': 'Không hoạt động',
+		'locked': 'Bị khóa'
+	};
+
+	const today = new Date();
+	const formattedDate = `${String(today.getDate()).padStart(2, '0')}-${String(today.getMonth() + 1).padStart(2, '0')}-${today.getFullYear()}`;
+
+	if (editingRowId) {
+		// Update existing row
+		const row = document.querySelector(`tr[data-id="${editingRowId}"]`);
+		row.cells[0].textContent = name;
+		row.cells[1].textContent = email;
+		row.cells[2].innerHTML = `<span class="user-role ${role}">${roleMap[role]}</span>`;
+		row.cells[3].textContent = phone;
+		row.cells[4].innerHTML = `<span class="user-status ${status}">${statusMap[status]}</span>`;
+		alert('Cập nhật tài khoản thành công!');
+	} else {
+		// Add new row
+		const newId = tableBody.getElementsByTagName('tr').length + 1;
+		const newRow = document.createElement('tr');
+		newRow.setAttribute('data-id', newId);
+		newRow.innerHTML = `
+			<td>${name}</td>
+			<td>${email}</td>
+			<td><span class="user-role ${role}">${roleMap[role]}</span></td>
+			<td>${phone}</td>
+			<td><span class="user-status ${status}">${statusMap[status]}</span></td>
+			<td>${formattedDate}</td>
+			<td>
+				<div class="user-actions">
+					<i class='bx bx-edit' title="Chỉnh sửa"></i>
+					<i class='bx bx-trash' title="Xóa"></i>
+					<i class='bx ${status === 'active' ? 'bx-lock-open' : 'bx-lock'}' title="${status === 'active' ? 'Khóa' : 'Mở khóa'} tài khoản"></i>
+				</div>
+			</td>
+		`;
+		tableBody.appendChild(newRow);
+		alert('Thêm tài khoản mới thành công!');
+	}
+
+	userModal.style.display = 'none';
+	userForm.reset();
+});
+
+// Event delegation for user actions
+tableBody.addEventListener('click', function(e) {
+	const target = e.target;
+	const row = target.closest('tr');
+	
+	if (!row) return;
+	
+	const rowId = row.getAttribute('data-id');
+	
+	// Edit
+	if (target.classList.contains('bx-edit')) {
+		editingRowId = rowId;
+		userModalTitle.textContent = 'Chỉnh Sửa Tài Khoản';
+		
+		const cells = row.cells;
+		document.getElementById('userName').value = cells[0].textContent;
+		document.getElementById('userEmail').value = cells[1].textContent;
+		
+		const roleClass = cells[2].querySelector('.user-role').className;
+		if (roleClass.includes('admin')) document.getElementById('userRole').value = 'admin';
+		else if (roleClass.includes('doctor')) document.getElementById('userRole').value = 'doctor';
+		else if (roleClass.includes('staff')) document.getElementById('userRole').value = 'staff';
+		
+		document.getElementById('userPhone').value = cells[3].textContent;
+		
+		const statusClass = cells[4].querySelector('.user-status').className;
+		if (statusClass.includes('active')) document.getElementById('userStatus').value = 'active';
+		else if (statusClass.includes('inactive')) document.getElementById('userStatus').value = 'inactive';
+		else if (statusClass.includes('locked')) document.getElementById('userStatus').value = 'locked';
+		
+		userModal.style.display = 'flex';
+	}
+	
+	// Delete
+	if (target.classList.contains('bx-trash')) {
+		if (confirm('Bạn có chắc chắn muốn xóa tài khoản này?')) {
+			row.remove();
+			alert('Tài khoản đã được xóa!');
+		}
+	}
+	
+	// Toggle Lock
+	if (target.classList.contains('bx-lock') || target.classList.contains('bx-lock-open')) {
+		const statusSpan = row.cells[4].querySelector('.user-status');
+		const isActive = statusSpan.classList.contains('active');
+		
+		if (confirm(`Bạn có muốn ${isActive ? 'khóa' : 'mở khóa'} tài khoản này?`)) {
+			if (isActive) {
+				statusSpan.className = 'user-status locked';
+				statusSpan.textContent = 'Bị khóa';
+				target.className = 'bx bx-lock';
+				target.title = 'Mở khóa tài khoản';
+			} else {
+				statusSpan.className = 'user-status active';
+				statusSpan.textContent = 'Hoạt động';
+				target.className = 'bx bx-lock-open';
+				target.title = 'Khóa tài khoản';
+			}
+			alert('Trạng thái đã được cập nhật!');
+		}
+	}
+});
+
+// Dark mode toggle
+const switchMode = document.getElementById('switch-mode');
+if (switchMode) {
+	switchMode.addEventListener('change', function () {
+		document.body.classList.toggle('dark');
+	});
+}
+</script>
+</body>
+</html>

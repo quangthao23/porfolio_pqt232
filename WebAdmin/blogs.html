@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+	<link rel="stylesheet" href="css/style.css">
+	<title>Quản Lý Blog</title>
+</head>
+
+<body>
+
+<section id="sidebar">
+	<a href="#" class="brand">
+		<i class='bx bxs-clinic'></i>
+		<span class="text">PETCARE</span>
+	</a>
+	<ul class="side-menu top">
+		<li><a href="index.html"><i class='bx bxs-dashboard'></i><span class="text">Dashboard</span></a></li>
+		<li><a href="services.html"><i class='bx bxs-briefcase-alt-2'></i><span class="text">Dịch Vụ</span></a></li>
+		<li><a href="doctors.html"><i class='bx bxs-user-voice'></i><span class="text">Bác Sĩ</span></a></li>
+		<li><a href="appointments.html"><i class='bx bxs-calendar'></i><span class="text">Lịch Hẹn</span></a></li>
+		<li><a href="customers.html"><i class='bx bxs-group'></i><span class="text">Khách Hàng</span></a></li>
+		<li class="active"><a href="blogs.html"><i class='bx bxs-book-content'></i><span class="text">Blogs</span></a></li>
+		<li><a href="schedule.html"><i class='bx bxs-time-five'></i><span class="text">Lịch Làm Việc</span></a></li>
+		<li><a href="AccountManagement.html"><i class='bx bxs-user-account'></i><span class="text">Quản Lý Tài Khoản</span></a></li>
+	</ul>
+	<!-- <ul class="side-menu">
+		<li><a href="#"><i class='bx bxs-cog'></i><span class="text">Cài Đặt</span></a></li>
+		<li><a href="#" class="logout"><i class='bx bxs-log-out-circle'></i><span class="text">Đăng Xuất</span></a></li>
+	</ul> -->
+</section>
+
+<section id="content">
+
+<!-- NAVBAR -->
+	<nav>
+		<i class='bx bx-menu'></i>
+		<a class="nav-link">Quản Lý Blogs</a>
+		<form action="#">
+			<div class="form-input">
+				<input id="searchDoctor" type="search" placeholder="Tìm kiếm Blog...">
+				<button type="submit" class="search-btn"><i class='bx bx-search'></i></button>
+			</div>
+		</form>
+		<input type="checkbox" id="switch-mode" hidden>
+		<!-- <a href="#" class="notification"><i class='bx bxs-bell'></i><span class="num">3</span></a> -->
+		<a href="#" class="profile"><img src="img/bs1.jpg"></a>
+	</nav>
+	<!-- POPUP TẠO BLOG MỚI -->
+<div id="addBlogModal" class="modal">
+    <div class="modal-content">
+        <h2>Viết bài mới</h2>
+
+        <label>Tiêu đề bài viết</label>
+        <input type="text" id="blogTitle" placeholder="Nhập tiêu đề...">
+
+        <label>Tác giả</label>
+        <input type="text" id="blogAuthor" placeholder="VD: BS. Nguyễn Văn A">
+
+        <label>Ngày đăng</label>
+        <input type="date" id="blogDate">
+
+        <label>Nội dung</label>
+        <textarea id="blogContent" rows="5" placeholder="Nhập nội dung..."></textarea>
+
+        <label>Trạng thái</label>
+        <select id="blogStatus">
+            <option value="published">Xuất bản</option>
+            <option value="draft">Nháp</option>
+        </select>
+
+        <div class="modal-actions">
+            <button id="saveBlogBtn" class="btn-save">Lưu bài</button>
+            <button id="closeModalBtn" class="btn-cancel">Hủy</button>
+        </div>
+    </div>
+</div>
+
+	<main>
+
+		<div class="page-header">
+			<div>
+				<h1>Quản lý Blog</h1>
+				<p>Viết và quản lý các bài viết cho khách hàng</p>
+			</div>
+			<button class="add-btn"><i class='bx bx-plus'></i> Viết bài mới</button>
+		</div>
+
+		<div class="stats-box">
+			<div class="stats-item">
+				<h2>48</h2>
+				<p>Tổng bài viết</p>
+			</div>
+			<div class="stats-item">
+				<h2>42</h2>
+				<p>Đã xuất bản</p>
+			</div>
+			<div class="stats-item">
+				<h2>15.8K</h2>
+				<p>Tổng lượt xem</p>
+			</div>
+		</div>
+
+		<div class="blog-list">
+
+			<!-- BLOG CARD 1 -->
+			<div class="blog-card">
+				<div class="blog-title">Cách chăm sóc cho mèo mùa hè</div>
+				<div class="blog-footer">
+					<div class="blog-info">
+						<span>BS. Nguyễn Văn A</span>
+						<span>• 15/01/2024</span>
+						<span>• 👁 1240 lượt xem</span>
+					</div>
+					<div class="status-published">Đã xuất bản</div>
+					<div class="action-icons">
+						<i class='bx bx-edit'></i>
+						<i class='bx bx-trash'></i>
+					</div>
+				</div>
+			</div>
+
+			<!-- BLOG CARD 2 -->
+			<div class="blog-card">
+				<div class="blog-title">Lịch tiêm phòng cho thú cưng</div>
+				<div class="blog-footer">
+					<div class="blog-info">
+						<span>BS. Trần Thị B</span>
+						<span>• 12/01/2024</span>
+						<span>• 👁 856 lượt xem</span>
+					</div>
+					<div class="status-published">Đã xuất bản</div>
+					<div class="action-icons">
+						<i class='bx bx-edit'></i>
+						<i class='bx bx-trash'></i>
+					</div>
+				</div>
+			</div>
+
+			<!-- BLOG CARD 3 -->
+			<div class="blog-card">
+				<div class="blog-title">Dinh dưỡng cho chó con</div>
+				<div class="blog-footer">
+					<div class="blog-info">
+						<span>BS. Lê Văn C</span>
+						<span>• 08/01/2024</span>
+						<span>• 👁 310 lượt xem</span>
+					</div>
+					<div class="status-draft">Nháp</div>
+					<div class="action-icons">
+						<i class='bx bx-edit'></i>
+						<i class='bx bx-trash'></i>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+	</main>
+</section>
+
+<script src="js/script.js"></script>
+
+</body>
+</html>
